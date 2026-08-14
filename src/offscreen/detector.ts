@@ -6,7 +6,9 @@ import { readStoredModel, sha256Hex, writeStoredModel } from "./model-store";
 
 let session: ort.InferenceSession | null = null;
 let sessionPromise: Promise<ort.InferenceSession> | null = null;
-const MAX_CONCURRENT_ANALYSES = 2;
+// Keep inference serialized: some ONNX Runtime WASM builds can deadlock when
+// multiple runs share one session, leaving content badges stuck on "Scanning".
+const MAX_CONCURRENT_ANALYSES = 1;
 let activeAnalyses = 0;
 const pendingAnalyses: Array<{
   id: string;
