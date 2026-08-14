@@ -10,6 +10,7 @@ let analysisQueue: Promise<unknown> = Promise.resolve();
 let manifestPromise: Promise<ModelManifest> | null = null;
 let backend: "webgpu" | "wasm" = "wasm";
 let downloadPromise: Promise<ArrayBuffer> | null = null;
+const MULTIVIEW_MARGIN = 0.12;
 
 ort.env.logLevel = "error";
 
@@ -44,7 +45,7 @@ async function analyzeImageNow(id: string, url: string): Promise<AnalyzeImageRes
   const prepared = await prepareImage(url, manifest);
   const inputName = activeSession.inputNames[0];
   const visualScores: number[] = [];
-  for (const tensor of prepared.tensors) {
+  for (const [index, tensor] of prepared.tensors.entries()) {
     const input = new ort.Tensor("float32", tensor, [
       1,
       3,
@@ -53,7 +54,9 @@ async function analyzeImageNow(id: string, url: string): Promise<AnalyzeImageRes
     ]);
     const outputs = await activeSession.run({ [inputName]: input });
     const outputName = activeSession.outputNames[0];
-    visualScores.push(modelAiProbability(outputs[outputName].data, manifest));
+    const score = modelAiProbability(outputs[outputName].data, manifest);
+    visualScores.push(score);
+    if (index === 0 && Math.abs(score - DEFAULT_THRESHOLD) > MULTIVIEW_MARGIN) break;
   }
   const visualScore = visualScores.reduce((sum, value) => sum + value, 0) / visualScores.length;
   const aiProbability = clamp01(visualScore + metadataAdjustment(prepared.metadataSignals));
