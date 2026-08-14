@@ -9,7 +9,7 @@ interface ContentSettings {
 const DEFAULT_CONTENT_SETTINGS: ContentSettings = {
   enabled: true,
   showUncertain: true,
-  maxImagesPerPage: 80
+  maxImagesPerPage: 10
 };
 
 const seen = new WeakMap<HTMLImageElement, string>();

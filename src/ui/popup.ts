@@ -44,7 +44,7 @@ async function persistSettings(): Promise<void> {
     enabled: Boolean(enabled?.checked),
     threshold: 0.65,
     showUncertain: Boolean(showUncertain?.checked),
-    maxImagesPerPage: Math.max(1, Math.min(500, Number(maxImagesPerPage?.value || 80)))
+    maxImagesPerPage: Math.max(1, Math.min(500, Number(maxImagesPerPage?.value || 10)))
   };
   await saveSettings(settings);
   if (maxImagesPerPage) maxImagesPerPage.value = String(settings.maxImagesPerPage);

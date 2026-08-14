@@ -13,7 +13,7 @@ export const DEFAULT_SETTINGS: SourceSightSettings = {
   enabled: true,
   threshold: DEFAULT_THRESHOLD,
   showUncertain: true,
-  maxImagesPerPage: 80
+  maxImagesPerPage: 10
 };
 
 export async function getSettings(): Promise<SourceSightSettings> {

@@ -28,7 +28,7 @@ async function persist(): Promise<void> {
     enabled: Boolean(enabled?.checked),
     threshold: 0.65,
     showUncertain: Boolean(showUncertain?.checked),
-    maxImagesPerPage: Number(maxImagesPerPage?.value || 80)
+    maxImagesPerPage: Number(maxImagesPerPage?.value || 10)
   };
   await saveSettings(settings);
   if (saved) saved.textContent = `Saved ${new Date().toLocaleTimeString()}`;
