@@ -20,7 +20,7 @@ body {
 }
 
 .panel {
-  width: 280px;
+  width: 320px;
   padding: 16px;
 }
 
@@ -97,12 +97,29 @@ a {
   font-size: 12px;
 }
 
+.settings {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--fc-border);
+}
+
+.settings h2 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
   font-weight: 650;
+}
+
+.saved {
+  margin-top: 8px;
+  color: var(--fc-muted);
+  font-size: 11px;
 }
 
 .stack {

@@ -17,7 +17,22 @@
       </div>
       <div id="status" class="status">Checking model...</div>
       <button id="setup" type="button">Prepare local model</button>
-      <a id="options" href="options.html" target="_blank" rel="noreferrer">Settings</a>
+      <section class="settings" aria-labelledby="settings-title">
+        <h2 id="settings-title">Settings</h2>
+        <label class="row">
+          <span>Enable scanning</span>
+          <input id="enabled" type="checkbox" />
+        </label>
+        <label class="row">
+          <span>Show uncertain results</span>
+          <input id="showUncertain" type="checkbox" />
+        </label>
+        <label class="stack">
+          <span>Images per page</span>
+          <input id="maxImagesPerPage" type="number" min="1" max="500" step="1" />
+        </label>
+        <p id="saved" class="saved" role="status">Settings apply automatically.</p>
+      </section>
     </main>
   </body>
 </html>
