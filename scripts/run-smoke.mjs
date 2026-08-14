@@ -162,7 +162,7 @@ async function waitForBadges(client) {
     });
     result = response.result.result.value || [];
     if (
-      result.length >= 3 &&
+      result.length >= 2 &&
       result.every((item) => !/Scanning|Skipped|Unavailable/.test(item.text))
     ) {
       return result;

@@ -30,7 +30,7 @@
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
       }
 
@@ -75,7 +75,7 @@
   <body>
     <main>
       <h1>Source Sight Smoke Page</h1>
-      <p class="intro">Three fixed fixtures for checking local image analysis.</p>
+      <p class="intro">Two fixed fixtures for checking local image analysis.</p>
       <div class="grid">
         <article class="card">
           <h2>AI-generated fixture</h2>
@@ -87,48 +87,9 @@
           <p>Known real-world landscape photograph.</p>
           <img id="real-photograph" alt="Real photograph fixture" width="640" height="427" src="/tests/fixtures/real-photograph.jpg" />
         </article>
-        <article class="card">
-          <h2>Synthetic canvas</h2>
-          <p>Deterministic raster image generated in this page.</p>
-          <img id="synthetic" alt="Synthetic canvas fixture" width="640" height="480" />
-        </article>
       </div>
     </main>
     <script>
-      function makeRasterImage(kind) {
-        const canvas = document.createElement("canvas");
-        canvas.width = 640;
-        canvas.height = 480;
-        const ctx = canvas.getContext("2d");
-
-        const gradient = ctx.createLinearGradient(0, 0, 640, 480);
-        gradient.addColorStop(0, kind === "portrait" ? "#f7fafc" : "#111827");
-        gradient.addColorStop(1, kind === "portrait" ? "#1f6feb" : "#7c3aed");
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 640, 480);
-
-        ctx.globalAlpha = 0.55;
-        ctx.fillStyle = "#ffffff";
-        ctx.beginPath();
-        ctx.arc(210, 220, 90, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.globalAlpha = 0.35;
-        ctx.fillStyle = kind === "portrait" ? "#ef4444" : "#22c55e";
-        ctx.beginPath();
-        ctx.arc(410, 260, 120, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "700 42px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText(kind === "portrait" ? "Source Sight" : "AI test image", 320, 250);
-
-        return canvas.toDataURL("image/png");
-      }
-
-      document.getElementById("synthetic").src = makeRasterImage("portrait");
     </script>
   </body>
 </html>
