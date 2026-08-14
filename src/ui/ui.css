@@ -1,9 +1,21 @@
+:root {
+  color-scheme: dark;
+  --fc-ink: #f7f5ff;
+  --fc-muted: #b9b0d5;
+  --fc-surface: #171329;
+  --fc-surface-raised: #211b3d;
+  --fc-border: #3d3266;
+  --fc-purple: #855dcd;
+  --fc-purple-bright: #a879ff;
+  --fc-blue: #5b8cff;
+}
+
 html,
 body {
   margin: 0;
   min-width: 280px;
-  color: #172033;
-  background: #f7fafc;
+  color: var(--fc-ink);
+  background: var(--fc-surface);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -30,7 +42,8 @@ body {
   place-items: center;
   border-radius: 8px;
   color: white;
-  background: #1f6feb;
+  background: linear-gradient(135deg, var(--fc-purple-bright), var(--fc-blue));
+  box-shadow: 0 6px 18px rgba(133, 93, 205, 0.34);
   font-weight: 800;
 }
 
@@ -42,7 +55,7 @@ h1 {
 
 p {
   margin: 3px 0 0;
-  color: #526070;
+  color: var(--fc-muted);
   font-size: 12px;
 }
 
@@ -62,9 +75,11 @@ a {
 
 button {
   color: white;
-  background: #1f6feb;
+  background: linear-gradient(135deg, var(--fc-purple), #6f56d9);
   cursor: pointer;
 }
+
+button:hover { background: linear-gradient(135deg, var(--fc-purple-bright), #7968ec); }
 
 button:disabled {
   opacity: 0.55;
@@ -72,16 +87,17 @@ button:disabled {
 }
 
 a {
-  color: #1f2937;
-  background: #e5edf6;
+  color: var(--fc-ink);
+  background: var(--fc-surface-raised);
+  border: 1px solid var(--fc-border);
 }
 
 .status {
   padding: 10px;
-  border: 1px solid #d7e0ea;
+  border: 1px solid var(--fc-border);
   border-radius: 6px;
-  color: #334155;
-  background: white;
+  color: var(--fc-ink);
+  background: rgba(33, 27, 61, 0.72);
   font-size: 12px;
 }
 
@@ -101,7 +117,9 @@ a {
 }
 
 input[type="number"] {
+  color: var(--fc-ink);
+  background: var(--fc-surface-raised);
   padding: 8px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--fc-border);
   border-radius: 6px;
 }

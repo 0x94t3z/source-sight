@@ -220,7 +220,7 @@ function injectStyles(): void {
       pointer-events: auto;
       letter-spacing: 0;
     }
-    .sourcesight-badge--pending { background: rgba(31, 41, 55, 0.84); }
+    .sourcesight-badge--pending { background: rgba(86, 57, 151, 0.92); }
     .sourcesight-badge--ai { background: rgba(190, 18, 60, 0.88); }
     .sourcesight-badge--real { background: rgba(21, 128, 61, 0.88); }
     .sourcesight-badge--uncertain { background: rgba(146, 64, 14, 0.88); }
