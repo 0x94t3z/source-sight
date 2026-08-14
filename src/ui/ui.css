@@ -5,8 +5,8 @@
   --fc-surface: #171329;
   --fc-surface-raised: #211b3d;
   --fc-border: #3d3266;
-  --fc-purple: #855dcd;
-  --fc-purple-bright: #a879ff;
+  --fc-purple: #6a3cff;
+  --fc-purple-bright: #8d6bff;
   --fc-blue: #5b8cff;
 }
 
@@ -40,7 +40,7 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(133, 93, 205, 0.34);
+  box-shadow: 0 6px 18px rgba(106, 60, 255, 0.34);
 }
 
 h1 {
@@ -71,11 +71,11 @@ a {
 
 button {
   color: white;
-  background: linear-gradient(135deg, var(--fc-purple), #6f56d9);
+  background: linear-gradient(135deg, var(--fc-purple), #5830e6);
   cursor: pointer;
 }
 
-button:hover { background: linear-gradient(135deg, var(--fc-purple-bright), #7968ec); }
+button:hover { background: linear-gradient(135deg, var(--fc-purple-bright), #704ff0); }
 
 button:disabled {
   opacity: 0.55;
