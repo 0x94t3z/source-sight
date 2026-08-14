@@ -95,6 +95,7 @@ async function createSession(): Promise<ort.InferenceSession> {
 
   ort.env.wasm.wasmPaths = chrome.runtime.getURL("ort/");
   ort.env.wasm.numThreads = 1;
+  ort.env.logLevel = "error";
 
   try {
     session = await ort.InferenceSession.create(modelBytes, {
