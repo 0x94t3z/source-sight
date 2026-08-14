@@ -1,0 +1,26 @@
+{
+  "name": "sourcesight-ai-detector",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source Sight: a privacy-first Chrome MV3 extension for local AI image detection.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "download:model": "node scripts/download-model.mjs",
+    "verify:model": "node scripts/verify-model.mjs",
+    "test:smoke": "node scripts/run-smoke.mjs",
+    "benchmark": "node scripts/run-benchmark.mjs",
+    "package:release": "node scripts/package-release.mjs"
+  },
+  "dependencies": {
+    "onnxruntime-web": "1.27.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.1.4",
+    "typescript": "7.0.2",
+    "vite": "8.2.1"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Source Sight",
+  "version": "0.1.0",
+  "description": "Private AI image detection, directly in your browser.",
+  "action": {
+    "default_title": "Source Sight",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "permissions": ["offscreen", "storage"],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["assets/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["model-manifest.json", "models/*", "ort/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "minimum_chrome_version": "121"
+}

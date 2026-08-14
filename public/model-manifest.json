@@ -1,0 +1,30 @@
+{
+  "id": "capcheck-ai-image-detection-vit-int8",
+  "filename": "ai-image-detection-int8.onnx",
+  "url": "https://huggingface.co/onnx-community/ai-image-detection-ONNX/resolve/e3cfe99f2841930a040a6281682c10c989965603/onnx/model_int8.onnx",
+  "source": "onnx-community/ai-image-detection-ONNX",
+  "upstream": "CapCheck AI Image Detection (CIFAKE ViT-Base)",
+  "input": {
+    "width": 224,
+    "height": 224,
+    "resizeShortSide": 224,
+    "mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "std": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "output": {
+    "kind": "softmax2",
+    "aiIndex": 1,
+    "meaning": "softmax(logits)[1] = P(AI-generated); labels are REAL=0, FAKE=1",
+    "threshold": 0.65
+  },
+  "sizeBytes": 87333629,
+  "sha256": "08b349f1b535f2f0cc2a8610bbf57c27593a0364e78b6c91205c0ff2bf29d714"
+}

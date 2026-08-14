@@ -1,0 +1,10 @@
+node_modules/
+dist/
+public/models/*.onnx
+dist.crx
+dist.pem
+bounty.txt
+.DS_Store
+npm-debug.log*
+benchmarks/dataset/
+source-sight-*.zip

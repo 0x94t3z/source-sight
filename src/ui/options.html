@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Source Sight Settings</title>
+    <script type="module" src="./options.ts"></script>
+  </head>
+  <body>
+    <main class="panel panel--wide">
+      <div class="brand">
+        <div class="mark">S</div>
+        <div>
+          <h1>Source Sight</h1>
+          <p>Settings</p>
+        </div>
+      </div>
+      <label class="row">
+        <span>Enabled</span>
+        <input id="enabled" type="checkbox" />
+      </label>
+      <label class="row">
+        <span>Show uncertain results</span>
+        <input id="showUncertain" type="checkbox" />
+      </label>
+      <label class="stack">
+        <span>Images per page</span>
+        <input id="maxImagesPerPage" type="number" min="1" max="500" step="1" />
+      </label>
+      <p id="saved" class="status">Saved automatically</p>
+    </main>
+  </body>
+</html>
