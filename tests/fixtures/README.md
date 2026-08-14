@@ -4,4 +4,6 @@ These files are small, fixed inputs for the browser smoke test. They are not a b
 
 - `ai-generated.png` is an in-house generated image with an embedded C2PA marker.
 - `ai-matched-landscape.png` is a generated counterpart with a similar alpine-lake composition to the real photograph. It is a controlled smoke fixture, not a benchmark sample.
+- `ai-superhero-costume.png` is an original generated red-and-blue costume portrait.
 - `real-photograph.jpg` is a landscape photograph downloaded from [Unsplash](https://images.unsplash.com/photo-1501785888041-af3ef285b470).
+- `real-spiderman-cosplay.jpg` is a real cosplay photograph from [Unsplash](https://unsplash.com/photos/person-in-spider-man-costume-holding-black-camera-sQgqmOmxnrg).
