@@ -7,61 +7,62 @@
     <style>
       body {
         margin: 0;
-        padding: 32px;
+        padding: 40px clamp(24px, 4vw, 72px);
         color: #172033;
         background: #f7fafc;
         font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
 
       main {
-        max-width: 920px;
+        width: min(1600px, 100%);
         margin: 0 auto;
       }
 
       h1 {
-        margin: 0 0 16px;
-        font-size: 24px;
+        margin: 0 0 18px;
+        font-size: clamp(30px, 3vw, 48px);
       }
 
       .intro {
-        margin: 0 0 24px;
+        margin: 0 0 34px;
         color: #526070;
+        font-size: clamp(18px, 1.8vw, 26px);
       }
 
       .grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
+        gap: 28px;
       }
 
       .card {
         min-width: 0;
-        padding: 10px;
-        border: 1px solid #d7e0ea;
-        border-radius: 12px;
+        padding: 20px;
+        border: 2px solid #d7e0ea;
+        border-radius: 18px;
         background: #fff;
         box-shadow: 0 8px 24px rgba(23, 32, 51, 0.08);
       }
 
       .card h2 {
-        margin: 0 0 4px;
-        font-size: 14px;
+        margin: 0 0 8px;
+        font-size: clamp(20px, 1.8vw, 28px);
       }
 
       .card p {
-        min-height: 32px;
-        margin: 0 0 10px;
+        min-height: 42px;
+        margin: 0 0 18px;
         color: #526070;
-        font-size: 12px;
+        font-size: clamp(15px, 1.4vw, 20px);
         line-height: 1.35;
       }
 
       .card img {
         width: 100%;
-        height: 220px;
+        height: min(62vh, 620px);
         object-fit: contain;
-        border: 1px solid #cbd5e1;
-        border-radius: 8px;
+        border: 2px solid #cbd5e1;
+        border-radius: 12px;
         background: #eef2f7;
       }
 
