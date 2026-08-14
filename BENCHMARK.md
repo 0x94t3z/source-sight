@@ -22,6 +22,7 @@ Current implementation status:
 - Model: CapCheck CIFAKE ViT-Base int8 ONNX export
 - Preprocessing: resize to 224×224, RGB mean/std 0.5/0.5
 - Output: two-class softmax, class 1 as `P(AI-generated)`
+- Inference views: center crop for near-square inputs; center plus edge crops for larger inputs, averaged before thresholding
 
 The public score should be added here once a proxy dataset run is completed.
 

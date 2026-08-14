@@ -41,16 +41,19 @@ async function analyzeImageNow(id: string, url: string): Promise<AnalyzeImageRes
   const activeSession = await loadSession();
   const prepared = await prepareImage(url, manifest);
   const inputName = activeSession.inputNames[0];
-  const input = new ort.Tensor("float32", prepared.tensor, [
-    1,
-    3,
-    manifest.input.height,
-    manifest.input.width
-  ]);
-  const outputs = await activeSession.run({ [inputName]: input });
-  const outputName = activeSession.outputNames[0];
-  const output = outputs[outputName];
-  const visualScore = modelAiProbability(output.data, manifest);
+  const visualScores: number[] = [];
+  for (const tensor of prepared.tensors) {
+    const input = new ort.Tensor("float32", tensor, [
+      1,
+      3,
+      manifest.input.height,
+      manifest.input.width
+    ]);
+    const outputs = await activeSession.run({ [inputName]: input });
+    const outputName = activeSession.outputNames[0];
+    visualScores.push(modelAiProbability(outputs[outputName].data, manifest));
+  }
+  const visualScore = visualScores.reduce((sum, value) => sum + value, 0) / visualScores.length;
   const aiProbability = clamp01(visualScore + metadataAdjustment(prepared.metadataSignals));
   const threshold = DEFAULT_THRESHOLD;
   const label =
