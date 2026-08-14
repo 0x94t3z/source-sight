@@ -11,6 +11,8 @@ let manifestPromise: Promise<ModelManifest> | null = null;
 let backend: "webgpu" | "wasm" = "wasm";
 let downloadPromise: Promise<ArrayBuffer> | null = null;
 
+ort.env.logLevel = "error";
+
 export async function getManifest(): Promise<ModelManifest> {
   if (!manifestPromise) {
     manifestPromise = fetch(chrome.runtime.getURL("model-manifest.json")).then(async (response) => {
@@ -100,14 +102,16 @@ async function createSession(): Promise<ort.InferenceSession> {
   try {
     session = await ort.InferenceSession.create(modelBytes, {
       executionProviders: ["webgpu", "wasm"],
-      graphOptimizationLevel: "all"
+      graphOptimizationLevel: "all",
+      logSeverityLevel: 3
     });
     backend = "webgpu";
   } catch (error) {
     console.warn("Source Sight WebGPU initialization failed; falling back to WASM.", error);
     session = await ort.InferenceSession.create(modelBytes, {
       executionProviders: ["wasm"],
-      graphOptimizationLevel: "all"
+      graphOptimizationLevel: "all",
+      logSeverityLevel: 3
     });
     backend = "wasm";
   }
