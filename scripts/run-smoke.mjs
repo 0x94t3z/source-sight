@@ -10,7 +10,7 @@ const smokeFile = "/tests/smoke-page.html";
 const chromeBin =
   process.env.CHROME_BIN || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const timeoutMs = 120_000;
-const keepOpenMs = Number(process.env.SOURCESIGHT_KEEP_OPEN_MS || 8000);
+const keepOpenMs = Number(process.env.SOURCESIGHT_KEEP_OPEN_MS || 30000);
 
 const mimeTypes = new Map([
   [".html", "text/html; charset=utf-8"],

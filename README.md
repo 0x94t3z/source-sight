@@ -53,7 +53,7 @@ npm run build
 npm run test:smoke  # temporary Chrome profile and CDP smoke test
 ```
 
-The smoke test loads `tests/smoke-page.html`, installs the built extension through Chrome DevTools Protocol, and waits for three completed image badges: an AI-generated fixture, a real photograph, and a synthetic canvas image. It leaves Chrome open for eight seconds after the results are printed; set `SOURCESIGHT_KEEP_OPEN_MS=0` for a non-interactive run. Chrome 137 and later require this CDP loading path for branded Chrome; the old `--load-extension` launch flag is not used.
+The smoke test loads `tests/smoke-page.html`, installs the built extension through Chrome DevTools Protocol, and waits for three completed image badges: an AI-generated fixture, a real photograph, and a synthetic canvas image. It leaves Chrome open for 30 seconds after the results are printed; set `SOURCESIGHT_KEEP_OPEN_MS=60000` for one minute or `SOURCESIGHT_KEEP_OPEN_MS=0` for a non-interactive run. Chrome 137 and later require this CDP loading path for branded Chrome; the old `--load-extension` launch flag is not used.
 
 For a clean rebuild, run `npm run clean` before `npm run build`.
 
