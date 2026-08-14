@@ -12,7 +12,7 @@ const DEFAULT_CONTENT_SETTINGS: ContentSettings = {
   maxImagesPerPage: 80
 };
 
-const seen = new WeakSet<HTMLImageElement>();
+const seen = new WeakMap<HTMLImageElement, string>();
 const overlays = new WeakMap<HTMLImageElement, HTMLElement>();
 let scannedCount = 0;
 let showUncertain = true;
@@ -47,16 +47,19 @@ async function getContentSettings(): Promise<ContentSettings> {
 function scanImages(maxImages: number): void {
   const images = Array.from(document.images);
   for (const image of images) {
-    if (scannedCount >= maxImages) return;
-    if (seen.has(image)) continue;
+    if (scannedCount >= maxImages && !seen.has(image)) continue;
     if (!image.complete || !(image.naturalWidth || image.width)) {
       image.addEventListener("load", () => scanImages(maxImages), { once: true });
       continue;
     }
     if (!shouldAnalyze(image)) continue;
 
-    seen.add(image);
-    scannedCount += 1;
+    const url = image.currentSrc || image.src;
+    if (seen.get(image) === url) continue;
+
+    const wasSeen = seen.has(image);
+    seen.set(image, url);
+    if (!wasSeen) scannedCount += 1;
     void analyze(image);
   }
 }
@@ -72,6 +75,7 @@ function shouldAnalyze(image: HTMLImageElement): boolean {
 }
 
 async function analyze(image: HTMLImageElement): Promise<void> {
+  overlays.get(image)?.remove();
   const overlay = createOverlay(image);
   setOverlayState(overlay, "Scanning", "sourcesight-badge--pending");
 

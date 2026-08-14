@@ -6,7 +6,14 @@ import { readStoredModel, sha256Hex, writeStoredModel } from "./model-store";
 
 let session: ort.InferenceSession | null = null;
 let sessionPromise: Promise<ort.InferenceSession> | null = null;
-let analysisQueue: Promise<unknown> = Promise.resolve();
+const MAX_CONCURRENT_ANALYSES = 2;
+let activeAnalyses = 0;
+const pendingAnalyses: Array<{
+  id: string;
+  url: string;
+  resolve: (result: AnalyzeImageResult) => void;
+  reject: (error: unknown) => void;
+}> = [];
 let manifestPromise: Promise<ModelManifest> | null = null;
 let backend: "webgpu" | "wasm" = "wasm";
 let downloadPromise: Promise<ArrayBuffer> | null = null;
@@ -34,9 +41,25 @@ export async function setupModel(): Promise<void> {
 }
 
 export async function analyzeImage(id: string, url: string): Promise<AnalyzeImageResult> {
-  const queued = analysisQueue.then(() => analyzeImageNow(id, url));
-  analysisQueue = queued.catch(() => undefined);
-  return queued;
+  return new Promise((resolve, reject) => {
+    pendingAnalyses.push({ id, url, resolve, reject });
+    pumpAnalyses();
+  });
+}
+
+function pumpAnalyses(): void {
+  while (activeAnalyses < MAX_CONCURRENT_ANALYSES && pendingAnalyses.length > 0) {
+    const job = pendingAnalyses.shift();
+    if (!job) return;
+
+    activeAnalyses += 1;
+    analyzeImageNow(job.id, job.url)
+      .then(job.resolve, job.reject)
+      .finally(() => {
+        activeAnalyses -= 1;
+        pumpAnalyses();
+      });
+  }
 }
 
 async function analyzeImageNow(id: string, url: string): Promise<AnalyzeImageResult> {
